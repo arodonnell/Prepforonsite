@@ -1,0 +1,70 @@
+﻿@page
+@model PrepForOnSite.Pages.AddModel
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div>
+    <form method="post">
+
+        <fieldset>
+            <legend>Add person info</legend>
+            <div class="form-group">
+                <label asp-for=Person.FirstName> </label><br />         @*label attached to input *@
+                <input asp-for=Person.FirstName />                      @*generates input *@
+                <span asp-validation-for=Person.FirstName></span>       @*validation for input*@
+            </div>
+
+            <div class="form-group">
+                <label asp-for=Person.LastName></label><br />
+                <input asp-for=Person.LastName />
+                <span asp-validation-for=Person.LastName></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for=Person.Pps></label><br />
+                <input asp-for=Person.Pps />
+                <span asp-validation-for=Person.Pps></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for=Person.Dob> </label><br />
+                <input asp-for=Person.Dob />
+                <span asp-validation-for=Person.Dob></span>
+            </div>
+
+            <label>Gender</label>
+
+            <div class="form-group">
+                <input type="radio" id="male" value="male" asp-for=Person.Gender />
+                <label for="male">Male</label>
+                <input type="radio" id="female" value="female" asp-for=Person.Gender />
+                <label for="female">Female</label>
+                <input type="radio" id="other" value="other" asp-for=Person.Gender />
+                <label for="other">Other</label>
+                <span asp-validation-for=Person.Gender></span>
+            </div>
+
+            <label>Drivers Licence Category</label>
+
+            <div class="form-group">
+                @for (int i = 0; i < Model.DriversLicenceOptions.Length; i++)
+                {
+                    <input asp-for=DriverLicenceSelected[i] type="checkbox" />
+                    <label asp-for=DriverLicenceSelected[i]> @Model.DriversLicenceOptions[i]</label>
+                }
+            </div>          
+
+            <div>
+                <label asp-for=Person.YearsOfExperience> </label><br />
+                <input asp-for=Person.YearsOfExperience />
+                <span asp-validation-for=Person.YearsOfExperience></span>
+            </div>
+            <br/>
+        </fieldset>
+
+        <button type="submit" class="btn btn-primary">Add Person</button>  
+    </form>
+</div>
+
